@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Application</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        body {
+            background-color: brown;
+        }
+        input {
+            margin-top: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body onload="greet()">
+    <button onclick="alert('Hello Geno')">Click me</button>
+    <p id="text">This is an HTML, CSS, and JavaScript Fusion</p>
+    <button onclick="document.getElementById('text').innerHTML = 'Inline JavaScript'">Change text</button>
+    <button id="click">Internal JavaScript click</button>
+
+    <!-- Color picker and button for custom background color -->
+    <div>
+        <input type="color" id="colorInput" value="#ffffff">
+        <button onclick="changeBackgroundColor()">Change Background Color</button>
+    </div>
+
+    <script>
+        // Function to greet on page load
+        function greet() {
+            alert('Welcome to the Dynamic Application');
+        }
+
+        // Event listeners for the "Internal JavaScript click" button
+        const buttonId = document.getElementById("click");
+
+        // Click event
+        buttonId.onclick = function () {
+            alert("Button was clicked.");
+        };
+
+        // Mouseover event to change text color
+        buttonId.onmouseover = function () {
+            buttonId.style.color = "red";
+        };
+
+        // Mouseout event to revert text color
+        buttonId.onmouseout = function () {
+            buttonId.style.color = "black";
+        };
+
+        // Function to change background color with error handling
+        function changeBackgroundColor() {
+            const colorInput = document.getElementById("colorInput").value;
+            const defaultColor = "#00ff00"; // Default color if input is empty
+
+            // Simple validation: Check if the input is a valid hex color
+            if (isValidHex(colorInput)) {
+                document.body.style.backgroundColor = colorInput || defaultColor;
+            } else {
+                alert("Invalid color selected. Applying default color.");
+                document.body.style.backgroundColor = defaultColor;
+            }
+        }
+
+        // Function to validate hex color code
+        function isValidHex(color) {
+            const hexRegex = /^#([0-9A-F]{3}){1,2}$/i;
+            return hexRegex.test(color);
+        }
+    </script>
+</body>
+</html>
